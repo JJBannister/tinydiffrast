@@ -1,0 +1,2 @@
+The bunny and dragon mesh contained in this folder were acquired from [The Stanford 3D Scanning Repository](http://www.graphics.stanford.edu/data/3Dscanrep/)
+The other meshes are default meshes exported from Blender with some minimal editing. 

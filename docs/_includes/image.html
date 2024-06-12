@@ -1,0 +1,23 @@
+<style>
+    .fig-container {
+      text-align: center; 
+      padding-top: 3em;
+      padding-bottom: 1em;
+    }
+
+    .caption {
+      text-align: center; 
+      padding-bottom: 3em;
+      font-style: italic;
+    }
+
+</style>
+
+
+<div class="fig-container"> 
+    <img src="{{ include.file | relative_url }}" alt="{{ include.description }}" width="{{include.width}}">  
+</div>
+
+<div class="caption"> 
+    <span class="italic">{{ include.description }}</span>
+</div>

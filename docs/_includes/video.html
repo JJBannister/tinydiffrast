@@ -1,0 +1,26 @@
+<style>
+    .video-container {
+      text-align: center; 
+      padding-top: 3em;
+      padding-bottom: 1em;
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    .video-caption {
+      text-align: center; 
+      padding-bottom: 3em;
+      font-style: italic;
+    }
+
+</style>
+
+<div class="video-container"> 
+  <video width="{{include.width}}%" controls loop >
+    <source src="{{ include.file | relative_url }}" type="video/mp4">
+  </video> 
+</div>
+
+<div class="video-caption"> 
+    <span class="italic">{{ include.description }}</span>
+</div>

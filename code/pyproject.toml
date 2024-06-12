@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tinydiffrast"
+version = "0.0.1"
+requires-python = "==3.10.14"
+dependencies = [
+    "taichi",
+    "pyQt5",
+    "matplotlib",
+    "numpy"
+]
+
+[tool.setuptools]
+include-package-data = true

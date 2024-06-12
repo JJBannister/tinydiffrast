@@ -1,0 +1,83 @@
+<style>
+    .grid-container {
+      text-align: center; 
+      padding-top: 1em;
+      padding-bottom: 1em;
+      padding-left: 1em;
+      padding-right: 1em;
+      max-width: 100%;
+      max-height: 100%;
+      display: grid;
+      grid-template-columns: 50% 50%;
+    }
+
+    .video-caption {
+      text-align: center; 
+      padding-bottom: 1em;
+      font-style: italic;
+    }
+
+    .video-container {
+      padding-left: 1em;
+      padding-right: 1em;
+    }
+
+</style>
+
+<div class="grid-container"> 
+  
+  <div class="video-container">
+    <video width="100%" loop autoplay muted>
+      <source src="{{ include.file1 | relative_url }}" type="video/mp4">
+    </video> 
+    <div class="video-caption"> 
+        <span class="italic">{{ include.description1 }}</span>
+    </div>
+  </div>
+
+  <div class="video-container">
+    <video width="100%" loop autoplay muted>
+      <source src="{{ include.file2 | relative_url }}" type="video/mp4">
+    </video> 
+    <div class="video-caption"> 
+        <span class="italic">{{ include.description2 }}</span>
+    </div>
+  </div>
+
+  <div class="video-container">
+    <video width="100%" loop autoplay muted>
+      <source src="{{ include.file3 | relative_url }}" type="video/mp4">
+    </video> 
+    <div class="video-caption"> 
+        <span class="italic">{{ include.description3 }}</span>
+    </div>
+  </div>
+
+  <div class="video-container">
+    <video width="100%" loop autoplay muted>
+      <source src="{{ include.file4 | relative_url }}" type="video/mp4">
+    </video> 
+    <div class="video-caption"> 
+        <span class="italic">{{ include.description4 }}</span>
+    </div>
+  </div>
+
+  <div class="video-container">
+    <video width="100%" loop autoplay muted>
+      <source src="{{ include.file5 | relative_url }}" type="video/mp4">
+    </video> 
+    <div class="video-caption"> 
+        <span class="italic">{{ include.description5 }}</span>
+    </div>
+  </div>
+
+  <div class="video-container">
+    <video width="100%" loop autoplay muted>
+      <source src="{{ include.file6 | relative_url }}" type="video/mp4">
+    </video> 
+    <div class="video-caption"> 
+        <span class="italic">{{ include.description6 }}</span>
+    </div>
+  </div>
+
+</div>
