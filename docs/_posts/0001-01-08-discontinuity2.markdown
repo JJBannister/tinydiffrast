@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "7) The Discontinuity Problem Part 2"
+title:  "7) The Return of The Discontinuity Problem"
 author: "Jordan J. Bannister"
 ---
 
@@ -73,7 +73,7 @@ The downsides of this approach include a lack of support for differentiation wit
 For example, shading details like specular highlights are treated as if they are part of the mesh surface and move with the surface of the mesh.
 If we rotate a rendered sphere about it's origin, the specular highlights will actually slide along the mesh surface as the sphere rotates, remaining stationary in the image.
 
-Later publications [Neural Mesh Renderer](https://openaccess.thecvf.com/content_cvpr_2018/papers/Kato_Neural_3D_Mesh_CVPR_2018_paper.pdf) and [Soft-Ras](https://openaccess.thecvf.com/content_ICCV_2019/papers/Liu_Soft_Rasterizer_A_Differentiable_Renderer_for_Image-Based_3D_Reasoning_ICCV_2019_paper.pdf) perform rasterization with different varieties of blur and transparency integrated into the rasterization process. 
+Later publications [Neural Mesh Renderer](https://openaccess.thecvf.com/content_cvpr_2018/papers/Kato_Neural_3D_Mesh_CVPR_2018_paper.pdf) and [Soft-Ras]{https://openaccess.thecvf.com/content_ICCV_2019/papers/Liu_Soft_Rasterizer_A_Differentiable_Renderer_for_Image-Based_3D_Reasoning_ICCV_2019_paper.pdf} perform rasterization with different varieties of blur and transparency integrated into the rasterization process. 
 Both of these methods do not scale well with mesh complexity, and can become very computationally expensive for large meshes.
 [DIB-R](https://research.nvidia.com/labs/toronto-ai/DIB-R/files/diff_shader.pdf) is a newer method proposed by Nvidia researchers that uses an additional alpha channel to approximate silhouette boundary gradients. 
 However, this approach requires that an alpha mask be available for reference images, and is not able to produce correct gradients for sillhouetes against visible geometry (as opposed to silhouettes against a background color/image).

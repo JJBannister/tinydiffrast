@@ -38,7 +38,7 @@ Depending on what the future holds, we may develop more content like this to del
 If this is something that interests you, let us know by giving us a star on the project [github page](https://github.com/JJBannister/tinydiffrast). 
 
 
-__This project is currently under development. The content may be updated or changed without warning.__
+<!-- __This project is currently under development. The content may be updated or changed without warning.__ -->
 
 
 <br />

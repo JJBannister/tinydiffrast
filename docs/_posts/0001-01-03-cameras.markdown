@@ -142,16 +142,20 @@ Here is an excellent figure that visually summarizes their result.
 
 You may be asking yourself if this actually matters in practice. 
 Is using a discontinous representation like quaternions or Euler angles really going to effect the process of learning a rotation?
-The answer is emphatically, yes!
-The authors also performed a series of experiments to validate their work, and all of their experiments showed a clear difference in performance.
+The anwer will depend on the details of the optimization problem. 
+Perhaps the rotation that is being optimized can be initialized very close to the true solution, such that discontinuities in the selected representation space are never encountered. 
+Or, perhaps the rotation optimization can be further constrained to a single dimension. 
+In these scenarios, you could probably get away with using an Euler angle representation, provided you are mindful of the discontinuous nature of that representation. 
+For general rotation optimization problems, discontinuous representations can absolutely cause performance issues. 
+The authors performed a series of experiments to validate their work, and all of their experiments showed a clear difference in performance for general rotation estimation tasks.
 Here is a snapshot of their sanity check experiment results.
 Look at the difference in maximum errors between their continuous 5 and 6D representations and other approaches.
-Using a continuous representation can mean the difference between 180 degrees and 2 degrees of rotational error.
+Using a continuous representation can mean the difference between 180 degrees and 2 degrees of rotational error!
 
 {% include image.html file="/assets/images/post3/error.png" description="Error rates from a rotation estimation task using different representations. This image is taken from Zhou and Barnes et al."%}
 
 
-Before moving on from this paper, let's review their 6D rotation representation of $$\mathrm{SO}(3)$$ beginning with the mapping $$ g: X \rightarrow R$$.
+Before moving on from this paper, let's review their surprisingly simple 6D rotation representation of $$\mathrm{SO}(3)$$ beginning with the mapping $$ g: X \rightarrow R$$.
 Equations 15 and 16 from supplemental section B provide everything we need to know.
 First, we will note that a rotation in 3D can be fully and uniquely described using 3D basis vectors $$\{\hat{x}, \hat{y}, \hat{z}\}$$ that, together, make a 9D representation.
 Next, we will note that one of these vectors is redundant. 
@@ -174,7 +178,7 @@ The coding challenge for this lesson is to implement learnable perspective and o
 
 Going forwards, we will accompany the coding challenges with some additional details on how it is implemented in our codebase (without giving everything away).
 As always, you can go look at the [codebase](https://github.com/JJBannister/tinydiffrast/blob/main/code/) for working implementations of this challenge if you want. 
-If you would like, you can use these details as a skeleton for your solution to the challenge, or you can do your own thing.
+If you would like, you can use these details as a skeleton for your solution to the challenge, or you can just do your own thing.
 Please do not take our implementation as _the_ correct answer to these challenges, but rather as _a_ correct answer.
 It's very possible that you will come up with some clever solution that is better than ours. 
 If you do, don't hesitate to let us know!
@@ -183,7 +187,7 @@ If you do, don't hesitate to let us know!
 ## Implementation
 
 In the project codebase, Taichi's ``@data_oriented`` class decorator is used quite extensively to keep things organized.
-This decorator allows you to create a python class with kernels and device functions as member functions.
+This decorator allows you to create a python class with Taichi kernels and device functions as member functions.
 The kernels and device functions can access any Taichi fields that are members of the class.
 
 Within the codebase there is a class for rigid transforms.

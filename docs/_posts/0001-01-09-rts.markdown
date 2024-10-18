@@ -128,7 +128,7 @@ Likewise, if the splats were to spread out around a pixel, the splat weight sum 
 
 For splats on silhouette boundaries, the splat weight sum is $$<1$$ and the pixels are not normalized. 
 This is important because we do need the gradients from splat squishing and spreading to be captured in those regions.
-In other words, boundary pixels do become brigher and darker as the silhouette boundary moves.
+In other words, boundary pixels do become brigher or darker as the silhouette boundary moves.
 If we were to normalize these pixels by the splat weight sum, we would not properly capture silhouette boundary gradients, and that is the whole point of applying RTS in the first place!
 
 
@@ -180,7 +180,7 @@ This pixel will be normalized, and after normalization, the pixel becomes slight
 Likewise, if a neighboring grey pixel translates away from the white pixel, due to the underlying translation of the plane mesh, the splat weight of the grey pixel decreases.
 After normalization, this results in the splat pixel becoming slightly more white (brighter).
 However, this is not what should happen.
-What should happen is that the grey pixel of the plane should slide underneath the white pixel of the sphere, leaving the white pixel unchanged.
+What should happen is that the grey pixel of the plane should slide _behind_ the white pixel of the sphere, leaving the white pixel unchanged.
 
 In short, the RTS approach doesn't normalize at silhouette boundaries against background pixels, therefore, it should also not normalize at silhouette boundaries against other mesh pixels.
 In order to solve this problem, we must adapt the splatting operation to be aware of multiple depth layers.
@@ -203,7 +203,7 @@ Finally, the layers are composited to produce the final output buffer.
 ### Occlusion Estimation
 
 The question now is how to determine which splat accumulation layer each splat should be placed in.
-This is not trivial as our mesh could have many different sillhouette boundaries at different depths in the image.
+This is not trivial, as our mesh could have many different sillhouette boundaries at different depths in the image.
 A simple depth thresholding method is not likely to be robust.
 This is where the multi-layer rasterization approach that we implemented earlier comes in handy.
 Recall that our shade buffer, and our depth buffer actually have two layers.

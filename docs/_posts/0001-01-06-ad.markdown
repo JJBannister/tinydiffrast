@@ -44,7 +44,7 @@ While the approach works and may be useful when using AD is not an option, the g
 Finally, we have AD. 
 AD uses the fact that most complicated functions that need to be derived are composed of much simpler elementary operations like addition and multiplication.
 Knowing the derivatives of the elementary operations allows one to construct the derivative of a composite function using the chain rule.
-Importantly, the construction of a derivative function in this way is something that can be done by a computer without needing to convert the original function into any sort of symbolic representation.
+Importantly, the construction of a derivative function in this way is something that can be done by a computer operating on the source code representation.
 Taichi, and many other AD systems, use an approach called source code transformation. 
 This means that a compiler processes a function that has been marked as needing a derivative, and generates code for the derivative function automatically. 
 Therefore, so long as one plays by the rules of the AD system, any function implemented in code can be derived with little to no effort by the programmer.
@@ -165,9 +165,9 @@ This scenario is slightly more complicated than backpropagating from a scalar lo
 Here, we wish to compute the Jacobian of a function that maps from a scalar input to a high-dimensional output.
 We just learned that reverse-mode AD is most suitable when our output is low-dimensional and the input is high-dimensional.
 In fact, this scenario of a low-dimensional input and high-dimensional output is when we would usually prefer using forward-mode AD.
-We are not going to use forward-mode AD here, because we know that we will be using reverse-mode when we perform inverse rendering, and we want to check that our reverse-mode AD is working properly.
+However, we are not going to use forward-mode AD here, because we know that we will be using reverse-mode when we perform inverse rendering, and we want to check that our reverse-mode AD is working properly.
 So, can we still compute this gradient image with reverse-mode AD?
-The answer is yes, but, one pixel at a time.
+The answer is yes, _but_, it must be done one pixel at a time.
 In order to build our gradient image, we must seed the image gradient field with 1 at a pixel of interest and 0 everywhere else.
 We can then backpropagate the image gradient to the light parameter and store the resulting value in a separate image buffer at the corresponding pixel.
 Then we repeat the process for each pixel. 

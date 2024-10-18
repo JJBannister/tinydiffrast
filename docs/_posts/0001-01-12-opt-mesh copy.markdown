@@ -46,16 +46,25 @@ Let's see what happens to our optimization process when we implement this.
 {% include video.html file="/assets/images/post12/noreset.mp4" description="The mesh optimization process with edge length regularization." width=100 %}
 
 Clearly, the regularization loss is working to prevent the mesh from becoming scrambled as before.
-Unfortunately, this also means that the mesh doesn't converge very well to match the bunny image.
+Unfortunately, this also means that the mesh is unable to deform enough to closely match the target image. 
 Let's try another experiment where we periodically reset the reference edge lengths.
-This will still provide some of regularization, but should also, over time, allow the mesh to undergo the extreme transformations required to match the bunny image.
-Let's see what this looks like.
+This will still provide some of regularization, but should also, over time, allow the mesh to undergo the large transformations required in this example.
+Here is what this looks like.
 
 {% include video.html file="/assets/images/post12/train_final.mp4" description="The mesh optimization process with edge length regularization and periodic edge length resets." width=100 %}
 
-Far from perfect, but significantly better!
-The ear of the bunny is still dominated by a few big triangles.
-Nevertheless, we obtained a much better final result compared to the first couple of attempts.
+This is starting to look a bit better now, but several issues still remain. 
+For one, we have introduced a tradeoff in our optimization procedure. 
+We must now compromise between minimizing our image-based rendering loss and minimizing our edge length loss that seeks to retain mesh regularity. 
+Periodically re-setting edge lengths is a relatively hacky heuristic to alleviate this issue. 
+Another important issue is that the addition of regularization makes the optimization procedure take considerably more time to run. 
+Hopefully, you can now see that a differentiable rendering algorithm alone does not make the optimization of mesh geometry an easy problem to solve. 
+
+Thankfully, this is an active area of research and several innovative approaches have been proposed to improve mesh geometry optimization. 
+One approach that we believe is particularly worth mentioning is the use of pre-conditioned gradient descent optimization as proposed in the 2021 paper ["Large Steps in Inverse Rendering of Geometry"](https://rgl.epfl.ch/publications/Nicolet2021Large) by Baptiste Nicolet, Alec Jacobson, and Wenzel Jacob. 
+In their approach, there is an additional step that occurs before each variable update.
+The role of this additional step is to spread out the gradient information across the entire mesh in a smooth way, thereby enabling convergence using fewer and larger steps while retaining a regular mesh. 
+Covering this approach in detail is slightly out of scope for this course, which aims to focus on differentiable rasterization algorithms, but would be an excellent bonus implementation challenge for anyone who wishes to expand their knowledge of geometry optimization.
 
 
 # Coding Challenge 11

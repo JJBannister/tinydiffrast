@@ -53,13 +53,13 @@ Our implementation will not perform on par with hardware rasterization, but it w
 
 ## Deferred Shading
 
-Triangle rasterization computes which geometry elements (triangles in our case) intersect the view direction associated with each pixel in an image.
-The view direction a pixel is often called a camera ray, or primary ray.
+Rasterization computes which geometry elements (triangles in this case) intersect the rays associated with each pixel in an image (often called primary or camera rays).
+Rays are defined by an origin and a direction vector in 3D space. 
 Rasterization also determines how triangles occlude one another when multiple triangles are intersected by a primary ray (a process called Z-buffering). 
 However, this alone is not sufficient to render a final image.
 It still remains to determine the color of each pixel (a process called shading).
 In regular rendering applications, shading and rasterization computation can be performed at different times throughout the pipeline, typically optimized for performance.
-In differentiable rendering applications, shading almost always takes place after rasterization using an approach called [deferred shading](https://en.wikipedia.org/wiki/Deferred_shading).
+In differentiable rendering applications, shading often takes place after rasterization using an approach called [deferred shading](https://en.wikipedia.org/wiki/Deferred_shading).
 
 In a deferred shading approach, the rasterization process outputs image buffers that contain information related to triangle coverage and occlusion. 
 Subsequent processing stages then compute additional buffers, called G-buffers, containing information related to geometry and texture. 
@@ -81,9 +81,9 @@ However, there are certain applications in which it is useful to keep track of m
 One of these applications is rendering meshes that are partially transparent. 
 In this scenario, it is also necessary to know what triangles are behind partially transparent triangles. 
 
-In the differentiable rasterization approaches that we will be implementing, it is necessary to keep track of two layers during rasterization. 
+In one of the differentiable rasterization approaches that we will be implementing, it is necessary to keep track of two layers during rasterization. 
 Thankfully, this is not a difficult thing to implement.
-Each output buffer will have two layers, and during Z-buffering, we will simply keep track of the two closest triangles instead of just one. 
+Each output buffer will have two layers, and, during Z-buffering, we will simply keep track of the two closest triangles instead of just one. 
 For more detail on muli-layer rasterization, [here](https://on-demand.gputechconf.com/gtc/2014/presentations/S4385-order-independent-transparency-opengl.pdf) is a good presentation from researchers at Nvidia. 
 
 {% include image_compare.html file1="/assets/images/post4/l0_t.png" file2="/assets/images/post4/l1_t.png" description="The three output buffers from rasterization in a deferred shading approach. Top: A triangle id buffer visualized by mapping integer ids to random colors. Middle: A depth buffer. Bottom: A barycentric coordinate buffer visualized by interpreting 3D barycentric coordinates as RGB values. Each buffer has two layers." width=700%}
@@ -119,7 +119,7 @@ One of the downsides of using integer coordinates is that they can cause integer
 Integer data types have min and max values that can be exceeded when performing rasterization, leading to undesirable behaviour.
 For this reason, rasterization pipelines typically have clipping stages for the purpose of preventing integer overflow.
 In our codebase, we do not implement clipping. 
-This is because it is relatively complicated, not very interesting, and would distract from the goal of explaining and implementing _differentiable_ rasterization.
+This is because it is relatively complicated, not particularly interesting, and is tangential from our primary goal of explaining and implementing _differentiable_ rasterization.
 For most applications of differentiable rendering, and for all of the examples that we explore, the objects being rendered are in front of the camera, and do not require clipping. 
 We also use some well known [tricks](https://fgiesen.wordpress.com/2013/02/08/triangle-rasterization-in-practice/#comment-3751) that give us plenty of room in our integer variables to fit large triangles with sub-pixel precision.
 

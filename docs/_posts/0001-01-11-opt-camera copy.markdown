@@ -54,7 +54,7 @@ Can you think of a way to prevent it from happening so that the optimization smo
 
 In the experiments above, the true and initial images of the dragon are partially overlapping.
 What do you think would happen to the optimization process if they did not overlap at all?
-Given that the optimization process is path-dependent, is it possible that the optimization process could fails to converge to an optimal solution?
+Given that the optimization process is path-dependent, is it possible that the optimization process could fail to converge to an optimal solution?
 What sort of scenarios would lead to a local minimum or plateau in the loss landscape from which the gradient descent algorithm may not escape.
 Are there any techniques that you could employ to prevent the optimization process from becoming stuck?
 

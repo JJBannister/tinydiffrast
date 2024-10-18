@@ -61,7 +61,7 @@ The specular component approximates the effect of direct light that is reflected
 
 Let's look at a simple example to get a better sense of what this looks like.
 Here is a rendering of a white torus mesh that is illuminated by two directional lights.
-One of the lights has a slight red tint, and the other has a slight blue tint. 
+One of the lights has a red tint, and the other has a blue tint. 
 We can visualize each component individually, and then sum them up to produce a final rendering of the mesh.
 
 {% include image.html file="/assets/images/post5/shade_L0_t.png"  description="A torus mesh rendered with Blinn-Phong shading. From top to bottom. 1) The full shader ouptut. 2) The ambient component of the shader. 3) The diffuse component of the shader. 4) The specular component of the shader." width=600 id="shade"%}

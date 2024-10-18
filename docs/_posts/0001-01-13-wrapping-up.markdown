@@ -136,7 +136,7 @@ However, if you've made it this far, we're confident that you have the skills to
 
 ### Easy/Moderate
 - Extend the camera classes so that you can also learn field-of-view (perspective) or projection size (orthographic).
-- Implement a clipping stage in the Rasterizer.
+- Implement a clipping stage in the rasterizer.
 - Improve the rasterizer to run faster on GPU, CPU or on a specific scene.
 - Implement an experiment that optimizes material properties other than albedo (like the specular coefficient).
 - Implement a different shading model.
@@ -155,4 +155,4 @@ However, if you've made it this far, we're confident that you have the skills to
 
 # Conclusion
 If you have stuck with us throught this entire course, and especially if you completed all of the coding challenges, then congratulations!
-We hope that you found the course valuable and are very grateful that you took the time to engage with our work.
+We are very grateful that you took the time to engage with our work, and hope that you found the course valuable.
